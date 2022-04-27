@@ -1,0 +1,68 @@
+{
+    "sword" : {
+        "name" : "Sword+",
+        "dpc" : 10,
+        "dps" : 0,
+        "dpcX" : 0,
+        "dpsX" : 0,
+        "description" : "Upgrade your damage per click",
+        "cost" : 25,
+        "costX" : 1.5,
+        "dpX" : 1.1
+    },
+    "afterimage" : {
+        "name" : "After Image",
+        "dpc" : 0,
+        "dps" : 10,
+        "dpcX" : 0,
+        "dpsX" : 0,
+        "description" : "Upgrade your damage per second",
+        "cost" : 100,
+        "costX": 1.5,
+        "dpX" : 1.1
+    },
+    "goddesshelp" : {
+        "name" : "Goddess Help",
+        "dpc" : 10,
+        "dps" : 10,
+        "dpcX" : 0,
+        "dpsX" : 0,
+        "description" : "Tilith is helping you. It gives you more click power and dps.",
+        "cost" : 200,
+        "costX": 1.5,
+        "dpX" : 1.1
+    },
+    "unitdps" : {
+        "name" : "Units Evolution",
+        "dpc" : 0,
+        "dps" : 0,
+        "dpcX" : 0,
+        "dpsX" : 1.1,
+        "description" : "Multiply your units damage per second",
+        "cost" : 200000,
+        "costX": 1.5,
+        "dpX" : 1
+    },
+    "unitdpc" : {
+        "name" : "Units Awakening",
+        "dpc" : 0,
+        "dps" : 0,
+        "dpcX" : 1.1,
+        "dpsX" : 0,
+        "description" : "Multiply your damage per click",
+        "cost" : 100000,
+        "costX": 1.5,
+        "dpX" : 1
+    },
+    "enlightning" : {
+        "name" : "Units Enlightement",
+        "dpc" : 0,
+        "dps" : 0,
+        "dpcX" : 1.1,
+        "dpsX" : 1.1,
+        "description" : "Multiply your overall stats",
+        "cost" : 500000,
+        "costX": 1.3,
+        "dpX" : 1
+    }
+}
