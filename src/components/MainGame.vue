@@ -6,6 +6,9 @@
     @click="addPoints"
   />
   <ShopPopup></ShopPopup>
+  <SummonPopup></SummonPopup>
+  <UnitsPopup></UnitsPopup>
+  <CheatsPopup></CheatsPopup>
   <div id="main_game_div">
     <div id="profile">
       <StatsCard :icon="'ra ra-player'" :title="'Luc Damas '"></StatsCard>
@@ -25,6 +28,9 @@
 import ShopPopup from "@/components/ShopPopup.vue";
 import { defineComponent } from "vue";
 import StatsCard from "@/components/StatsCard.vue";
+import SummonPopup from "@/components/SummonPopup.vue";
+import UnitsPopup from "@/components/UnitsPopup.vue";
+import CheatsPopup from "@/components/CheatsPopup.vue";
 export default defineComponent({
   name: "MainGame",
   data() {
@@ -74,7 +80,7 @@ export default defineComponent({
       } else return 0;
     },
   },
-  components: { StatsCard, ShopPopup },
+  components: { StatsCard, ShopPopup, SummonPopup, UnitsPopup, CheatsPopup },
   mounted() {
     // Watchers for upgrade or unit
     // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -112,6 +118,33 @@ export default defineComponent({
       }
       updateEmittedValues;
     });
+    //@ts-ignore
+    this.eventBus.on("updateGems", (gems) => {
+      this.gems -= gems;
+      updateEmittedGemsValue;
+    });
+
+    // Cheats watcher
+    //@ts-ignore
+    this.eventBus.on("gemsCheat", () => {
+      this.gems += 99999999;
+      updateEmittedValues;
+    });
+    //@ts-ignore
+    this.eventBus.on("zelCheat", () => {
+      this.zel += 9999999999;
+      updateEmittedValues;
+    });
+    //@ts-ignore
+    this.eventBus.on("dpsCheat", () => {
+      this.dps += 99999999;
+      updateEmittedValues;
+    });
+    //@ts-ignore
+    this.eventBus.on("dpcCheat", () => {
+      this.dpc += 99999999;
+      updateEmittedValues;
+    });
     // Watcher for update query event
     //@ts-ignore
     this.eventBus.on("updateEmittedValues", updateEmittedValues);
@@ -122,11 +155,15 @@ export default defineComponent({
       //@ts-ignore
       self.eventBus.emit("totalKarma", self.karma);
       //@ts-ignore
-      self.eventBus.emit("totalGems", self.gems);
-      //@ts-ignore
       self.eventBus.emit("totalDps", self.dps);
       //@ts-ignore
       self.eventBus.emit("totalDpc", self.dpc);
+    }
+    //@ts-ignore
+    this.eventBus.on("updateEmittedGemsValue", updateEmittedGemsValue);
+    function updateEmittedGemsValue() {
+      //@ts-ignore
+      self.eventBus.emit("totalGems", self.gems);
     }
     // Add zel every second
     setInterval(function () {

@@ -3,6 +3,17 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
+  <iframe
+    class="vid"
+    id="yt"
+    width="1182"
+    height="665"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
   <div id="main_menu" class="icon-bar">
     <a href="#" id="shop" @click="openPopup($event)">
       <i class="ra ra-relic-blade"></i>
@@ -16,13 +27,13 @@
       <i class="ra ra-aura"></i>
       <p>Summon</p>
     </a>
-    <a href="#" id="save" @click="openPopup($event)">
-      <i class="ra ra-save"></i>
-      <p>Save</p>
+    <a href="#" id="success" @click="openPopup2($event)">
+      <i class="ra ra-trophy"></i>
+      <p>Success</p>
     </a>
-    <a href="#" id="load" @click="openPopup($event)">
-      <i class="ra ra-load"></i>
-      <p>Load</p>
+    <a href="#" id="cheats" @click="openPopup($event)">
+      <i class="ra ra-spikeball"></i>
+      <p>Cheats</p>
     </a>
   </div>
 </template>
@@ -34,8 +45,26 @@ export default defineComponent({
     openPopup: function openPopup(event: Event) {
       let targetId = (event.currentTarget as HTMLElement)?.id;
       (event.currentTarget as HTMLElement).classList.toggle("active");
+      console.log(targetId);
       //@ts-ignore
       this.eventBus.emit(targetId);
+    },
+    openPopup2: function openPopup2(event: Event) {
+      (event.currentTarget as HTMLElement).classList.toggle("active");
+      if (document.querySelector("#yt")?.className != "vid show") {
+        document.querySelector("#yt")?.classList.toggle("show");
+        document
+          .querySelector("#yt")
+          ?.setAttribute(
+            "src",
+            "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+          );
+      } else {
+        document.querySelector("#yt")?.classList.toggle("show");
+        document
+          .querySelector("#yt")
+          ?.setAttribute("src", "https://www.youtube.com/embed/dQw4w9WgXcQ");
+      }
     },
   },
 });
@@ -79,5 +108,21 @@ p {
 }
 .active:hover {
   background-color: red !important;
+}
+.vid {
+  width: 100vw;
+  height: 87vh;
+  object-fit: cover;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+}
+#yt {
+  display: none;
+}
+.show {
+  display: block !important;
 }
 </style>

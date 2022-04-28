@@ -8,10 +8,10 @@
       <p class="card-text text-muted">Level : {{ level }}</p>
       <p class="card-text">{{ descriptionValue }}</p>
       <p class="card-text" v-if="dpc">
-        <i class="ra ra-crossed-swords"></i> {{ roundToDownNumber(dpcValue) }}
+        <i class="ra ra-crossed-swords"></i> +{{ roundToDownNumber(dpcValue) }}
       </p>
       <p class="card-text" v-if="dps">
-        <i class="ra ra-fire"></i> {{ roundToDownNumber(dpsValue) }}
+        <i class="ra ra-fire"></i> +{{ roundToDownNumber(dpsValue) }}
       </p>
       <p class="card-text" v-if="dpcX">
         <i class="ra ra-crossed-swords"></i> X{{ roundToDownNumber(dpcXValue) }}
@@ -141,8 +141,6 @@ export default defineComponent({
     if (typeof this.name != "undefined" && this.name != null)
       this.nameValue = this.name as string;
     this.level = 1;
-
-    console.log(this.nameValue + " : " + this.dpsValue);
 
     // Watch for Total Dps value
     //@ts-ignore
