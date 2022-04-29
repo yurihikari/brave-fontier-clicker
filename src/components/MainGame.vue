@@ -11,7 +11,7 @@
   <CheatsPopup></CheatsPopup>
   <div id="main_game_div">
     <div id="profile">
-      <StatsCard :icon="'ra ra-player'" :title="'Luc Damas '"></StatsCard>
+      <StatsCard :icon="'ra ra-player'" :title="'Summoner '"></StatsCard>
       <StatsCard :title="'Level : '" :value="level"></StatsCard>
       <StatsCard :icon="'ra ra-fire'" :value="dps"></StatsCard>
       <StatsCard :icon="'ra ra-crossed-swords'" :value="dpc"></StatsCard>
@@ -85,6 +85,7 @@ export default defineComponent({
     // Watchers for upgrade or unit
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     var self = this;
+    // After Buying an upgrade or getting a unit, those watcher will update everything needed
     //@ts-ignore
     this.eventBus.on("updateZel", (zel) => {
       this.zel -= zel;
@@ -124,10 +125,16 @@ export default defineComponent({
       updateEmittedGemsValue;
     });
 
+    //@ts-ignore
+    this.eventBus.on("refundGems", () => {
+      this.gems += 1;
+      updateEmittedGemsValue;
+    });
+
     // Cheats watcher
     //@ts-ignore
     this.eventBus.on("gemsCheat", () => {
-      this.gems += 99999999;
+      this.gems += 999999999;
       updateEmittedValues;
     });
     //@ts-ignore

@@ -43,9 +43,19 @@ export default defineComponent({
   name: "MainMenu",
   methods: {
     openPopup: function openPopup(event: Event) {
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      var self = this;
       let targetId = (event.currentTarget as HTMLElement)?.id;
+      document
+        .querySelectorAll("#main_menu > a")
+        .forEach(function (element, key) {
+          if (element.classList.contains("active") && element.id != targetId) {
+            element.classList.toggle("active");
+            //@ts-ignore
+            self.eventBus.emit(element.id);
+          }
+        });
       (event.currentTarget as HTMLElement).classList.toggle("active");
-      console.log(targetId);
       //@ts-ignore
       this.eventBus.emit(targetId);
     },

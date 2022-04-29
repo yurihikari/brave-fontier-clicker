@@ -17,59 +17,6 @@
 </template>
 <script setup lang="ts">
 import { upgrades } from "../assets/upgrade";
-// var deta = [
-//   {
-//     name: "Sword+",
-//     dpc: 2,
-//     description: "Upgrade your damage per click",
-//     cost: 25,
-//     costX: 1.5,
-//     dpX: 1.1,
-//   },
-//   {
-//     name: "After Image",
-//     dps: 10,
-//     description: "Upgrade your damage per second",
-//     cost: 100,
-//     costX: 1.5,
-//     dpX: 1.1,
-//   },
-//   {
-//     name: "Goddess Help",
-//     dpc: 2,
-//     dps: 10,
-//     description:
-//       "Tilith is helping you. It gives you more click power and dps.",
-//     cost: 200,
-//     costX: 1.5,
-//     dpX: 1.1,
-//   },
-//   {
-//     name: "Units Evolution",
-//     dpsX: 1.1,
-//     description: "Multiply your units damage per second",
-//     cost: 20000,
-//     costX: 1.5,
-//     dpX: 1,
-//   },
-//   {
-//     name: "Units Awakening",
-//     dpcX: 1.1,
-//     description: "Multiply your damage per click",
-//     cost: 10000,
-//     costX: 1.5,
-//     dpX: 1,
-//   },
-//   {
-//     name: "Units Enlightement",
-//     dpcX: 1.1,
-//     dpsX: 1.1,
-//     description: "Multiply your overall stats",
-//     cost: 60000,
-//     costX: 1.5,
-//     dpX: 1,
-//   },
-// ];
 </script>
 <script lang="ts">
 import UpgradeCard from "@/components/UpgradeCard.vue";

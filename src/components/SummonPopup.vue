@@ -5,129 +5,67 @@
         src="@/assets/images/backgrounds/rare_summon.png"
         draggable="false"
         class="img-fluid"
+        width="500"
+        height="400"
       /><br />
       <button class="btn btn-warning" @click="summon">
-        Summon <i class="ra ra-crystal-cluster"></i>5
+        Summon x1<i class="ra ra-crystal-cluster"></i>5
       </button>
       <button class="btn btn-warning" @click="summon10">
-        Summon 10+1<i class="ra ra-crystal-cluster"></i>50
+        Summon x10+1<i class="ra ra-crystal-cluster"></i>50
       </button>
+    </div>
+    <div id="summon_history" class="container-fluid">
+      <h3 class="h3">Summon History</h3>
+      <div class="container-fluid">
+        <p v-for="(history, hkey) in historySummon" v-bind:key="hkey">
+          {{ history.name }}
+          <template v-for="star in history.rarity" v-bind:key="star"
+            >⭐</template
+          >
+          {{ new Date().toLocaleDateString("fr") }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts"></script>
 <script lang="ts">
 import { defineComponent } from "vue";
-let units = [
-  {
-    name: "Vargas",
-    type: "Fire",
-    rarity: 3,
-    dps: 500,
-    dpc: 500,
-    clickRate: 1,
-    description: "The Fire Hero of Grand Gaia.",
-  },
-  {
-    name: "Selena",
-    type: "Ice",
-    rarity: 3,
-    dps: 750,
-    dpc: 250,
-    clickRate: 1,
-    description: "The Ice Hero of Grand Gaia.",
-  },
-  {
-    name: "Eze",
-    type: "Thunder",
-    rarity: 3,
-    dps: 1000,
-    dpc: 0,
-    clickRate: 1,
-    description: "The Thunder Hero of Grand Gaia.",
-  },
-  {
-    name: "Lance",
-    type: "Earth",
-    rarity: 3,
-    dps: 0,
-    dpc: 1000,
-    clickRate: 1,
-    description: "The Earth Hero of Grand Gaia.",
-  },
-  {
-    name: "Atro",
-    type: "Light",
-    rarity: 3,
-    dps: 400,
-    dpc: 600,
-    clickRate: 1,
-    description: "The Light Hero of Grand Gaia.",
-  },
-  {
-    name: "Magress",
-    type: "Dark",
-    rarity: 3,
-    dps: 600,
-    dpc: 400,
-    clickRate: 1,
-    description: "The Dark Hero of Grand Gaia.",
-  },
-  {
-    name: "Sefia",
-    type: "Light",
-    rarity: 4,
-    dps: 5000,
-    dpc: 5000,
-    clickRate: 1,
-    description: "The Light Angel with thousand swords",
-  },
-  {
-    name: "Lunaris",
-    type: "Dark",
-    rarity: 4,
-    dps: 10000,
-    dpc: 0,
-    clickRate: 1,
-    description: "One of the 10 Gods guardians",
-  },
-  {
-    name: "Kikuri",
-    type: "Dark",
-    rarity: 4,
-    dps: 0,
-    dpc: 10000,
-    clickRate: 1,
-    description: "The death angel known for her rivalry with Sefia.",
-  },
-  {
-    name: "Luc Damas",
-    type: "Light",
-    rarity: 6,
-    dps: 10000000,
-    dpc: 10000000,
-    clickRate: 1,
-    description:
-      "The Ultimate Professor. His skills are unmatched to this day.",
-  },
-  {
-    name: "Tilith",
-    type: "Light",
-    rarity: 5,
-    dps: 100000,
-    dpc: 100000,
-    clickRate: 1,
-    description: "The Opal goddess and also your guide.",
-  },
-];
+import { units } from "../assets/units";
+interface unitsList {
+  name: string;
+  rarity: number;
+}
 export default defineComponent({
   name: "SummonPopup",
   data() {
     return {
       totalGems: 0 as number,
+      rareUnits: [] as Array<unitsList>,
+      superRareUnits: [] as Array<unitsList>,
+      megaRareUnits: [] as Array<unitsList>,
+      omniRareUnits: [] as Array<unitsList>,
+      historySummon: [] as Array<unitsList>,
     };
   },
   mounted() {
+    for (let unit of units) {
+      switch (unit.rarity) {
+        case 3:
+          this.rareUnits.push({ name: unit.name, rarity: unit.rarity });
+          break;
+        case 4:
+          this.superRareUnits.push({ name: unit.name, rarity: unit.rarity });
+          break;
+        case 5:
+          this.megaRareUnits.push({ name: unit.name, rarity: unit.rarity });
+          break;
+        case 6:
+          this.omniRareUnits.push({ name: unit.name, rarity: unit.rarity });
+          break;
+      }
+    }
     //@ts-ignore
     this.eventBus.emit("updateEmittedGemsValue");
     //@ts-ignore
@@ -141,12 +79,31 @@ export default defineComponent({
   },
   methods: {
     summon: function summon() {
+      // Make sure to get updated total gems
       //@ts-ignore
       this.eventBus.emit("updateEmittedGemsValue");
+      // If you can summon
       if (this.checkSummon() == true) {
-        for (let unit of units) {
-          console.log(unit);
+        var rarityChance = Math.random();
+        var selectedRarityUnits: Array<unitsList> = [];
+        // 1% Chance Omni Rare, 70% Rare, 20% Super Rare, 10% Mega Rare
+        if (rarityChance <= 0.01) {
+          selectedRarityUnits = this.omniRareUnits;
+        } else if (rarityChance > 0.01 && rarityChance <= 0.7) {
+          selectedRarityUnits = this.rareUnits;
+        } else if (rarityChance > 0.7 && rarityChance <= 0.9) {
+          selectedRarityUnits = this.superRareUnits;
+        } else if (rarityChance > 0.9 && rarityChance <= 1) {
+          selectedRarityUnits = this.megaRareUnits;
         }
+        // Now just random in the selected units range
+        var chance = Math.floor(Math.random() * selectedRarityUnits.length);
+        // Emit summoned unit
+        // @ts-ignore
+        this.eventBus.emit("summoned" + selectedRarityUnits[chance].name);
+        // Push to history
+        this.historySummon.push(selectedRarityUnits[chance]);
+        // Update the total gems
         //@ts-ignore
         this.eventBus.emit("updateGems", 5);
       } else
@@ -197,8 +154,8 @@ export default defineComponent({
   top: 0;
   left: 0;
   visibility: hidden;
-  max-width: 100vw;
-  max-height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background: rgba(0, 0, 0, 0.7);
   padding: 20px;
   position: fixed;
@@ -208,8 +165,28 @@ export default defineComponent({
 #summon_banner button {
   margin-left: 5px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 .opened {
   visibility: visible !important;
+}
+
+#summon_history {
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 500px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+}
+#summon_history div {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 130px;
 }
 </style>

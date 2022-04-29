@@ -3,6 +3,8 @@
     <img
       class="img-fluid rounded-start"
       src="https://www.brainyquote.com/photos_tr/en/p/paulwalker/424421/paulwalker1-2x.jpg"
+      width="500"
+      height="400"
     /><br />
     <button id="zelCheat" class="btn btn-danger" @click="activateCheat($event)">
       Cheats Zel <i class="ra ra-gold-bar"></i>

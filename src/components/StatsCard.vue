@@ -14,6 +14,7 @@ export default defineComponent({
     value: Number as PropType<number>,
   },
   methods: {
+    // Round displayed number
     roundToDownNumber: function roundToDownNumber(value: number) {
       if (typeof this.value != "undefined") {
         var m = Number((Math.abs(value) * 100).toPrecision(15));

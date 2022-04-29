@@ -151,7 +151,6 @@ export default defineComponent({
     // Watch for total zel amount
     //@ts-ignore
     this.eventBus.on("totalZel", (totalZel) => {
-      console.log(totalZel);
       self.zel = totalZel;
     });
   },

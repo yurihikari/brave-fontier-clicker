@@ -1,5 +1,5 @@
 <template>
-  <div class="card mb-3" style="max-width: 600px">
+  <div :id="name" class="card mb-3" style="max-width: 600px">
     <div class="row g-0">
       <!-- <div class="col-md-4">
         
@@ -56,6 +56,32 @@ export default defineComponent({
       else return "Not Owned";
     },
   },
+  methods: {
+    summonedCheck: function summonedCheck() {
+      // Check if already owned
+      if (this.owned == false) {
+        // Set at owned
+        this.owned = true;
+        (
+          document.querySelector("#" + this.name) as HTMLElement
+        ).classList.toggle("owned");
+        //@ts-ignore
+        this.eventBus.emit("updateDps", this.dps);
+        //@ts-ignore
+        this.eventBus.emit("updateDpc", this.dpc);
+      } else {
+        // Refund 1 gem if already owned
+        //@ts-ignore
+        this.eventBus.emit("refundGems");
+      }
+    },
+  },
+  mounted() {
+    //@ts-ignore
+    this.eventBus.on("summoned" + this.name, () => {
+      this.summonedCheck();
+    });
+  },
 });
 </script>
 <style scoped>
@@ -63,7 +89,7 @@ export default defineComponent({
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   border: 1px solid rgba(209, 213, 219, 0.3);
   width: 300px;
@@ -77,5 +103,8 @@ export default defineComponent({
 img {
   width: 90%;
   height: 200px;
+}
+.owned {
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 </style>
