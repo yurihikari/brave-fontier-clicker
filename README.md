@@ -1,6 +1,19 @@
 # brave-fontier-clicker
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description
+A little clicker game made with Vue3 and Typescript, based on the now closed game Brave Frontier.
+Library Used : Bootstrap5, RPG Font awesome, mitt
+
+## Gameplay info
+- Click on the moving ennemy to get Zel.
+- With Zel, you can buy upgrades to earn even more Zel.
+- You also have 1% Chance to get a gem.
+- Gems can be used for summoning.
+- Summoned units provide huge Damage Per second or per click.
+- You can access the success menu to check on your achievements ;)
+- There is also a cheat menu for testing purposes, nothing fun about using it unless u really like a huge headstart.
+
+Have Fun
 
 ## Recommended IDE Setup
 
