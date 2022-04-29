@@ -41,6 +41,7 @@ export default defineComponent({
       let targetId = (event.currentTarget as HTMLElement)?.id;
       //@ts-ignore
       this.eventBus.emit(targetId);
+      alert(targetId + " activated");
     },
   },
 });
