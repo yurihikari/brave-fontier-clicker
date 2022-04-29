@@ -2,7 +2,10 @@
 
 ## Description
 A little clicker game made with Vue3 and Typescript, based on the now closed game Brave Frontier.
-Library Used : Bootstrap5, RPG Font awesome, mitt
+Library Used : 
+- Bootstrap5
+- RPG Font awesome
+- mitt
 
 ## Gameplay info
 - Click on the moving ennemy to get Zel.
