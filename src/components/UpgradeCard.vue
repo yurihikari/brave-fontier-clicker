@@ -60,7 +60,7 @@ export default defineComponent({
   },
   methods: {
     updateInfos: function updateInfos() {
-      //Get updated values
+      //Get updated values (Send request)
       //@ts-ignore
       this.eventBus.emit("updateEmittedValues");
       // Check if you can buy

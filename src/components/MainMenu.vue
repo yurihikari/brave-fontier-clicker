@@ -38,6 +38,7 @@
   </div>
 </template>
 <script lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "MainMenu",

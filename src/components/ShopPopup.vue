@@ -16,6 +16,7 @@
   </div>
 </template>
 <script setup lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { upgrades } from "../assets/upgrade";
 </script>
 <script lang="ts">
@@ -23,6 +24,9 @@ import UpgradeCard from "@/components/UpgradeCard.vue";
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "ShopPopup",
+  components: {
+    UpgradeCard,
+  },
   mounted() {
     //@ts-ignore
     this.eventBus.on("shop", () => {

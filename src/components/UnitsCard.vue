@@ -9,7 +9,7 @@
         <div class="card-body">
           <h5 class="card-title fw-bold">{{ name }}</h5>
           <p class="card-text">
-            <template v-for="star in rarity">⭐</template>
+            <template v-for="star in rarity" v-bind:key="star">⭐</template>
           </p>
           <p class="card-text">Type : {{ type }}</p>
           <p class="card-text">
@@ -28,6 +28,7 @@
   </div>
 </template>
 <script lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineComponent } from "vue";
 import type { PropType } from "vue";
 export default defineComponent({

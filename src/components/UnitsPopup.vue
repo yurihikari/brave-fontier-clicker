@@ -17,6 +17,7 @@
 import { units } from "../assets/units";
 </script>
 <script lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineComponent } from "vue";
 import UnitsCard from "@/components/UnitsCard.vue";
 export default defineComponent({

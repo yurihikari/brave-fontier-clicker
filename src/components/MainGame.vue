@@ -25,6 +25,7 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import ShopPopup from "@/components/ShopPopup.vue";
 import { defineComponent } from "vue";
 import StatsCard from "@/components/StatsCard.vue";

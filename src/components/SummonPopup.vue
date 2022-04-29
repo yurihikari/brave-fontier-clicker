@@ -31,6 +31,7 @@
 </template>
 <script setup lang="ts"></script>
 <script lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { defineComponent } from "vue";
 import { units } from "../assets/units";
 interface unitsList {
