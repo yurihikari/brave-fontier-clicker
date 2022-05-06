@@ -160,7 +160,7 @@ export const units = [
     icon: "https://static.wikia.nocookie.net/bravefrontierglobal/images/3/34/Unit_ills_full_840808.png",
   },
   {
-    name: "Luc Damas",
+    name: "LucDamas",
     type: "Light",
     rarity: 6,
     dps: 10000000,
